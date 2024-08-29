@@ -1,0 +1,29 @@
+package main
+
+import (
+	"fmt"
+	"progo/methods_and_interfaces/compos/store"
+)
+
+func main() {
+	kayak := store.NewProduct("Kayak", "Watersports", 275)
+	lifejacket := &store.Product{Name: "Lifejacket", Category: "Watersports"}
+
+	for _, p := range []*store.Product{kayak, lifejacket} {
+		fmt.Println("Name:", p.Name, "Category:", p.Category, "Price:", p.Price(0.2))
+	}
+
+	boats := []*store.Boat{
+		store.NewBoat("Kayak", 275, 1, false),
+		store.NewBoat("Canoe", 400, 3, false),
+		store.NewBoat("Tender", 650.25, 2, true),
+	}
+
+	for _, b := range boats {
+		fmt.Println("Conventional:", b.Product.Name, "Direct:", b.Name)
+	}
+
+	for _, b := range boats {
+		fmt.Println("Boat:", b.Name, "Price:", b.Price(0.2))
+	}
+}
